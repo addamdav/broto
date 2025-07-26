@@ -27,6 +27,7 @@
                         'brand-dark': '#047857',
                         'brand-input-bg': '#f3f4f6',
                         'brand-text-secondary': '#6b7281',
+                        'green-underline': '#8FD053'
                     }
                 }
             }
@@ -42,6 +43,8 @@
     <div id="app-main-view" class="w-full h-screen md:max-w-sm md:rounded-3xl md:shadow-lg md:overflow-hidden">
         <div class="h-full md:h-[85vh] md:min-h-[600px] md:max-h-[812px] flex flex-col">
             <main class="flex-grow overflow-y-auto pt-6">
+        <div class="h-full md:h-[85vh] md:min-h-[600px] md:max-h-[812px] flex flex-col">
+            <main class="flex-grow overflow-y-auto pt-6">
                 <!-- Main Screen: Home -->
                 <section id="main-screen-home" class="main-screen px-6 pb-6">
                     <!-- ... (código interno da home sem alterações) ... -->
@@ -53,15 +56,16 @@
                         <input type="text" placeholder="Pesquisar" class="w-full p-3 pl-10 bg-brand-input-bg rounded-lg border-none focus:ring-2 focus:ring-brand-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 absolute top-1/2 left-3 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                     </div>
-                    <div class="flex space-x-4 mb-6 overflow-x-auto pb-2">
-                        <button class="px-4 py-2 bg-brand-primary text-white rounded-full text-sm font-semibold whitespace-nowrap">Destaques</button>
-                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-semibold whitespace-nowrap">Categorias</button>
-                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-semibold whitespace-nowrap">Sugestões</button>
-                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-semibold whitespace-nowrap">Perto de você</button>
+                    <div class="flex space-x-1 mb-6 overflow-x-auto pb-2">
+                        <button class="px-4 py-2 text-gray-700 rounded-full text-sm font-semibold whitespace-nowrap">Todos</button>
+                        <button class="px-4 py-2 text-black-300 rounded-full text-sm font-semibold whitespace-nowrap underline decoration-green-underline">Destaques</button>
+                        <button class="px-4 py-2 text-gray-700 rounded-full text-sm font-semibold whitespace-nowrap">Categorias</button>
+                        <button class="px-4 py-2 text-gray-700 rounded-full text-sm font-semibold whitespace-nowrap">Sugestões</button>
+                        <button class="px-4 py-2 text-gray-700 rounded-full text-sm font-semibold whitespace-nowrap">Perto de você</button>
                     </div>
                     <div class="space-y-4">
                         <h2 class="text-xl font-bold text-gray-800">Para você</h2>
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-2 gap-2">
                              <!-- ... (código dos cards de produto sem alterações) ... -->
                             <div class="product-card bg-white p-3 rounded-xl shadow-sm cursor-pointer" data-product-id="1" data-product-name="Alface Fresca" data-product-price="3.50" data-product-image="images/alface.jpg"><img src="images/alface.jpg" alt="Alface Fresca" class="rounded-lg mb-2 w-full h-24 object-cover"><h3 class="font-semibold text-gray-800">Alface Fresca</h3><p class="text-brand-text-secondary text-sm">R$ 3,50</p></div>
                             <div class="product-card bg-white p-3 rounded-xl shadow-sm cursor-pointer" data-product-id="2" data-product-name="Tomate Italiano" data-product-price="5.00" data-product-image="images/tomate.jpg"><img src="images/tomate.jpg" alt="Tomate Italiano" class="rounded-lg mb-2 w-full h-24 object-cover"><h3 class="font-semibold text-gray-800">Tomate Italiano</h3><p class="text-brand-text-secondary text-sm">R$ 5,00 / kg</p></div>
