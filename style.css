@@ -15,3 +15,8 @@ input:focus {
 .nav-active, .nav-active svg {
     color: #84cc16; /* Corresponds to brand-primary in Tailwind config */
 }
+
+/* Style for input fields with validation errors */
+.input-error {
+    border: 1px solid #ef4444; /* red-500 from Tailwind palette */
+}
