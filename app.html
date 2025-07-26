@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App | Início</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind CSS Customization -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-primary': '#84cc16',
+                        'brand-primary-hover': '#65a30d',
+                        'brand-dark': '#047857',
+                        'brand-input-bg': '#f3f4f6',
+                        'brand-text-secondary': '#6b7281',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-200 flex items-center justify-center min-h-screen p-4">
+
+    <!-- Container Principal do App -->
+    <div id="app-main-view" class="w-full max-w-sm bg-gray-50 rounded-3xl shadow-lg overflow-hidden">
+        <div class="h-[85vh] min-h-[600px] max-h-[812px] flex flex-col relative">
+            <main class="flex-grow overflow-y-auto pb-20"> <!-- Padding bottom to avoid overlap with nav bar -->
+                <!-- Main Screen: Home -->
+                <section id="main-screen-home" class="main-screen p-6">
+                    <!-- ... (código do cabeçalho da home sem alterações) ... -->
+                    <div class="flex justify-between items-center mb-6">
+                        <h1 class="text-2xl font-bold text-gray-800">Início</h1>
+                        <button><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg></button>
+                    </div>
+                    <div class="relative mb-6">
+                        <input type="text" placeholder="Pesquisar" class="w-full p-3 pl-10 bg-brand-input-bg rounded-lg border-none focus:ring-2 focus:ring-brand-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 absolute top-1/2 left-3 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    </div>
+                    <div class="flex space-x-4 mb-6 overflow-x-auto pb-2">
+                        <button class="px-4 py-2 bg-brand-primary text-white rounded-full text-sm font-semibold whitespace-nowrap">Destaques</button>
+                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-semibold whitespace-nowrap">Categorias</button>
+                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-semibold whitespace-nowrap">Sugestões</button>
+                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm font-semibold whitespace-nowrap">Perto de você</button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h2 class="text-xl font-bold text-gray-800">Para você</h2>
+                        <div class="grid grid-cols-2 gap-4">
+                            <!-- Product Card com dados corrigidos -->
+                            <div class="product-card bg-white p-3 rounded-xl shadow-sm cursor-pointer" data-product-id="1" data-product-name="Alface Fresca" data-product-price="3.50" data-product-image="images/alface.jpg">
+                                <img src="images/alface.jpg" alt="Alface Fresca" class="rounded-lg mb-2 w-full h-24 object-cover">
+                                <h3 class="font-semibold text-gray-800">Alface Fresca</h3>
+                                <p class="text-brand-text-secondary text-sm">R$ 3,50</p>
+                            </div>
+                            <!-- Product Card com dados corrigidos -->
+                            <div class="product-card bg-white p-3 rounded-xl shadow-sm cursor-pointer" data-product-id="2" data-product-name="Tomate Italiano" data-product-price="5.00" data-product-image="images/tomate.jpg">
+                                <img src="images/tomate.jpg" alt="Tomate Italiano" class="rounded-lg mb-2 w-full h-24 object-cover">
+                                <h3 class="font-semibold text-gray-800">Tomate Italiano</h3>
+                                <p class="text-brand-text-secondary text-sm">R$ 5,00 / kg</p>
+                            </div>
+                            <!-- Product Card com dados corrigidos -->
+                             <div class="product-card bg-white p-3 rounded-xl shadow-sm cursor-pointer" data-product-id="3" data-product-name="Cenoura Orgânica" data-product-price="4.20" data-product-image="images/cenoura.jpg">
+                                <img src="images/cenoura.jpg" alt="Cenoura Orgânica" class="rounded-lg mb-2 w-full h-24 object-cover">
+                                <h3 class="font-semibold text-gray-800">Cenoura Orgânica</h3>
+                                <p class="text-brand-text-secondary text-sm">R$ 4,20 / kg</p>
+                            </div>
+                            <!-- Product Card com dados corrigidos -->
+                             <div class="product-card bg-white p-3 rounded-xl shadow-sm cursor-pointer" data-product-id="4" data-product-name="Beterraba" data-product-price="3.80" data-product-image="images/beterraba.jpg">
+                                <img src="images/beterraba.jpg" alt="Beterraba" class="rounded-lg mb-2 w-full h-24 object-cover">
+                                <h3 class="font-semibold text-gray-800">Beterraba</h3>
+                                <p class="text-brand-text-secondary text-sm">R$ 3,80</p>
+                            </div>
+                            <!-- Product Card com dados corrigidos -->
+                            <div class="product-card bg-white p-3 rounded-xl shadow-sm cursor-pointer" data-product-id="5" data-product-name="Batata" data-product-price="2.50" data-product-image="images/batata.jpeg">
+                                <img src="images/batata.jpeg" alt="Batata" class="rounded-lg mb-2 w-full h-24 object-cover">
+                                <h3 class="font-semibold text-gray-800">Batata</h3>
+                                <p class="text-brand-text-secondary text-sm">R$ 2,50</p>
+                            </div>
+                            <!-- Product Card com dados corrigidos -->
+                            <div class="product-card bg-white p-3 rounded-xl shadow-sm cursor-pointer" data-product-id="6" data-product-name="Cebola" data-product-price="3.10" data-product-image="images/cebola.jpg">
+                                <img src="images/cebola.jpg" alt="Cebola" class="rounded-lg mb-2 w-full h-24 object-cover">
+                                <h3 class="font-semibold text-gray-800">Cebola</h3>
+                                <p class="text-brand-text-secondary text-sm">R$ 3,10</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- O restante do arquivo (detalhes do produto, carrinho, etc.) permanece exatamente o mesmo -->
+                <!-- Main Screen: Product Details -->
+                <section id="main-screen-product-details" class="main-screen hidden p-6">
+                    <button class="back-button mb-4 text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></button>
+                    <div id="product-details-content">
+                        <!-- Content will be injected by JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- Main Screen: Cart -->
+                <section id="main-screen-cart" class="main-screen hidden p-6 flex flex-col h-full">
+                    <div class="flex items-center mb-6">
+                        <button class="back-button text-gray-500 mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></button>
+                        <h1 class="text-2xl font-bold text-gray-800">Meu Carrinho</h1>
+                    </div>
+                    <!-- Cart Items will be injected here -->
+                    <div id="cart-items-container" class="flex-grow space-y-4 overflow-y-auto">
+                        <!-- Example of empty state -->
+                        <div id="cart-empty-state" class="text-center py-10">
+                            <p class="text-gray-500">Seu carrinho está vazio.</p>
+                        </div>
+                    </div>
+                    <!-- Cart Total and Checkout Button -->
+                    <div id="cart-footer" class="mt-auto pt-4 border-t hidden">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-gray-600">Total</span>
+                            <span id="cart-total-price" class="text-2xl font-bold text-gray-900">R$ 0,00</span>
+                        </div>
+                        <button id="checkoutBtn" class="w-full bg-brand-primary text-white font-bold py-3.5 rounded-lg hover:bg-brand-primary-hover transition-colors">Finalizar Compra</button>
+                    </div>
+                </section>
+                
+                <!-- Main Screen: Delivery -->
+                <section id="main-screen-delivery" class="main-screen hidden p-6">
+                     <!-- ... (código da tela de Entrega sem alterações) ... -->
+                    <div class="flex items-center mb-6">
+                        <button class="back-button text-gray-500 mr-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></button>
+                        <h1 class="text-2xl font-bold text-gray-800">Entrega</h1>
+                    </div>
+                     <div class="space-y-4">
+                        <h2 class="font-semibold text-gray-800">Entregar em:</h2>
+                        <button class="w-full flex items-center p-4 bg-white rounded-lg border-2 border-brand-primary">
+                            <div class="ml-4 text-left flex-grow">
+                                <p class="font-bold text-gray-800">Casa</p>
+                                <p class="text-sm text-brand-text-secondary">Rua das Flores, 123 - Centro</p>
+                            </div>
+                            <div class="w-5 h-5 rounded-full border-2 border-brand-primary bg-brand-primary"></div>
+                        </button>
+                        <button class="w-full flex items-center p-4 bg-white rounded-lg border-2 border-transparent">
+                           <div class="ml-4 text-left flex-grow">
+                                <p class="font-bold text-gray-800">Trabalho</p>
+                                <p class="text-sm text-brand-text-secondary">Av. Principal, 456 - Sala 7</p>
+                            </div>
+                            <div class="w-5 h-5 rounded-full border-2 border-gray-300"></div>
+                        </button>
+                    </div>
+                    <button class="w-full mt-6 bg-brand-primary text-white font-bold py-3.5 rounded-lg hover:bg-brand-primary-hover transition-colors">Finalizar Pedido</button>
+                </section>
+
+                <!-- Main Screen: Orders -->
+                <section id="main-screen-orders" class="main-screen hidden p-6 text-center">
+                    <h1 class="text-2xl font-bold text-gray-800 mt-10">Meus Pedidos</h1>
+                    <p class="text-gray-500 mt-4">Nenhum pedido encontrado.</p>
+                </section>
+
+                <!-- Main Screen: Profile -->
+                <section id="main-screen-profile" class="main-screen hidden p-6 text-center">
+                    <h1 class="text-2xl font-bold text-gray-800 mt-10">Meu Perfil</h1>
+                    <p class="text-gray-500 mt-4">Configurações de perfil estarão aqui.</p>
+                </section>
+            </main>
+            
+            <!-- Bottom Navigation Bar -->
+            <footer class="absolute bottom-0 left-0 right-0 bg-white shadow-t-md rounded-b-3xl">
+                <nav class="flex justify-around items-center h-20">
+                    <button id="nav-home" class="nav-item flex flex-col items-center justify-center text-gray-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                        <span class="text-xs font-medium mt-1">Início</span>
+                    </button>
+                    <!-- Cart Navigation Item -->
+                    <button id="nav-cart" class="nav-item flex flex-col items-center justify-center text-gray-500 relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                        <span class="text-xs font-medium mt-1">Carrinho</span>
+                        <span id="cart-badge" class="absolute top-0 right-0 -mt-1 -mr-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                    </button>
+                     <button id="nav-orders" class="nav-item flex flex-col items-center justify-center text-gray-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
+                        <span class="text-xs font-medium mt-1">Pedidos</span>
+                    </button>
+                     <button id="nav-profile" class="nav-item flex flex-col items-center justify-center text-gray-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                        <span class="text-xs font-medium mt-1">Perfil</span>
+                    </button>
+                </nav>
+            </footer>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>

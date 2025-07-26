@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo | Autenticação</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind CSS Customization -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-primary': '#84cc16',
+                        'brand-primary-hover': '#65a30d',
+                        'brand-dark': '#047857',
+                        'brand-input-bg': '#f3f4f6',
+                        'brand-text-secondary': '#6b7281',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-200 flex items-center justify-center min-h-screen p-4">
+
+    <!-- Container do Fluxo de Autenticação -->
+    <div id="auth-container" class="w-full max-w-sm bg-white rounded-3xl shadow-lg overflow-hidden">
+        <div class="h-[85vh] min-h-[600px] max-h-[812px] flex flex-col">
+
+            <!-- Screen: Login -->
+            <section id="screen-login" class="screen flex flex-col p-6 h-full">
+                <div class="flex-grow">
+                    <button class="mb-8 text-gray-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+                    <h1 class="text-2xl font-bold text-gray-800">Seja bem vindo de volta! 👋</h1>
+                    <p class="text-brand-text-secondary mt-2">Entre com sua conta</p>
+
+                    <form id="login-form" class="mt-8 space-y-4">
+                        <div>
+                            <label for="login-email" class="text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" id="login-email" placeholder="seu email" class="w-full mt-1 p-3 bg-brand-input-bg rounded-lg border-none focus:ring-2 focus:ring-brand-primary">
+                        </div>
+                        <div>
+                            <label for="login-password" class="text-sm font-medium text-gray-700">Senha</label>
+                            <input type="password" id="login-password" placeholder="sua senha" class="w-full mt-1 p-3 bg-brand-input-bg rounded-lg border-none focus:ring-2 focus:ring-brand-primary">
+                        </div>
+                        <a href="#" id="goToForgotPassword" class="block text-sm text-right font-medium text-brand-primary hover:underline">Esqueceu a senha?</a>
+                        
+                        <button type="submit" class="w-full bg-brand-primary text-white font-bold py-3 rounded-lg hover:bg-brand-primary-hover transition-colors">Entrar</button>
+                    </form>
+                </div>
+                <div class="text-center">
+                    <p class="text-sm text-brand-text-secondary">Não tem conta? <a href="#" id="goToSignUp" class="font-bold text-brand-primary hover:underline">Se inscreva</a></p>
+                    <div class="flex items-center my-4">
+                        <hr class="flex-grow border-gray-300">
+                        <span class="mx-4 text-xs text-gray-400">Ou entre com</span>
+                        <hr class="flex-grow border-gray-300">
+                    </div>
+                    <div class="flex space-x-4">
+                        <button class="flex-1 flex items-center justify-center space-x-2 border border-gray-300 py-2.5 rounded-lg hover:bg-gray-50">
+                            <img src="https://www.vectorlogo.zone/logos/google/google-icon.svg" alt="Google" class="h-5 w-5">
+                            <span class="font-semibold text-sm">Google</span>
+                        </button>
+                        <button class="flex-1 flex items-center justify-center space-x-2 border border-gray-300 py-2.5 rounded-lg hover:bg-gray-50">
+                            <img src="https://www.vectorlogo.zone/logos/facebook/facebook-icon.svg" alt="Facebook" class="h-5 w-5">
+                            <span class="font-semibold text-sm">Facebook</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Screen: Sign Up -->
+            <section id="screen-signup" class="screen hidden flex-col p-6 h-full">
+                <div class="flex-grow">
+                    <h1 class="text-2xl font-bold text-gray-800">Criar Conta</h1>
+                    <p class="text-brand-text-secondary mt-2">Sua conta é o primeiro passo para apoiar o pequeno agricultor.</p>
+                    <form class="mt-8 space-y-4">
+                        <div>
+                            <label for="signup-name" class="text-sm font-medium text-gray-700">Nome</label>
+                            <input type="text" id="signup-name" placeholder="nome completo" class="w-full mt-1 p-3 bg-brand-input-bg rounded-lg border-none focus:ring-2 focus:ring-brand-primary">
+                        </div>
+                        <div>
+                            <label for="signup-email" class="text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" id="signup-email" placeholder="seu email" class="w-full mt-1 p-3 bg-brand-input-bg rounded-lg border-none focus:ring-2 focus:ring-brand-primary">
+                        </div>
+                        <div>
+                            <label for="signup-password" class="text-sm font-medium text-gray-700">Senha</label>
+                            <input type="password" id="signup-password" placeholder="sua senha" class="w-full mt-1 p-3 bg-brand-input-bg rounded-lg border-none focus:ring-2 focus:ring-brand-primary">
+                        </div>
+                        <button type="button" id="submitSignUp" class="w-full bg-brand-primary text-white font-bold py-3 rounded-lg hover:bg-brand-primary-hover transition-colors mt-6 !mb-6">Criar Conta</button>
+                    </form>
+                </div>
+                <div class="text-center">
+                    <p class="text-sm text-brand-text-secondary">Já tem uma conta? <a href="#" id="goToLogin" class="font-bold text-brand-primary hover:underline">Entre aqui</a></p>
+                    <p class="text-xs text-gray-400 mt-4">Ao criar uma conta, você concorda com nossos <a href="#" class="underline">Termos de Uso</a> e <a href="#" class="underline">Política de Privacidade</a>.</p>
+                </div>
+            </section>
+
+            <!-- Screen: Verify Code -->
+            <section id="screen-verify" class="screen hidden flex-col p-6 h-full text-center">
+                <div class="flex-grow flex flex-col items-center justify-center">
+                    <h1 class="text-2xl font-bold text-gray-800">Quase lá!</h1>
+                    <p class="text-brand-text-secondary mt-2 max-w-xs mx-auto">Confirmamos seu cadastro, agora só falta verificar seu e-mail. Acesse sua caixa de entrada e digite o código que te enviamos.</p>
+                    <div id="otp-container" class="flex space-x-3 my-8">
+                        <input type="text" class="w-14 h-16 text-3xl text-center font-bold bg-brand-input-bg rounded-lg focus:ring-2 focus:ring-brand-primary" maxlength="1">
+                        <input type="text" class="w-14 h-16 text-3xl text-center font-bold bg-brand-input-bg rounded-lg focus:ring-2 focus:ring-brand-primary" maxlength="1">
+                        <input type="text" class="w-14 h-16 text-3xl text-center font-bold bg-brand-input-bg rounded-lg focus:ring-2 focus:ring-brand-primary" maxlength="1">
+                        <input type="text" class="w-14 h-16 text-3xl text-center font-bold bg-brand-input-bg rounded-lg focus:ring-2 focus:ring-brand-primary" maxlength="1">
+                    </div>
+                    <p class="text-sm text-brand-text-secondary">Não recebeu? <a href="#" class="font-bold text-brand-primary hover:underline">Clique aqui para reenviar</a></p>
+                </div>
+                <button type="button" id="submitVerify" class="w-full bg-brand-primary text-white font-bold py-3 rounded-lg hover:bg-brand-primary-hover transition-colors">Continuar</button>
+            </section>
+            
+            <!-- Screen: Forgot Password -->
+            <section id="screen-forgot-password" class="screen hidden flex-col p-6 h-full">
+                <button class="mb-8 text-gray-500 self-start" id="backToLoginFromForgot">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                </button>
+                <div class="flex-grow">
+                    <h1 class="text-2xl font-bold text-gray-800">Esqueceu sua senha? 👀</h1>
+                    <p class="text-brand-text-secondary mt-2">Escolha como você deseja recuperar sua conta.</p>
+                    <div class="space-y-4 mt-8">
+                        <button class="w-full flex items-center p-4 bg-brand-input-bg rounded-lg border-2 border-transparent focus:outline-none focus:border-brand-primary">
+                            <div class="p-2 bg-green-100 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                            </div>
+                            <div class="ml-4 text-left">
+                                <p class="font-semibold text-gray-800">Recuperar por e-mail</p>
+                                <p class="text-sm text-brand-text-secondary">Enviaremos um link para redefinir sua senha.</p>
+                            </div>
+                        </button>
+                        <button class="w-full flex items-center p-4 bg-brand-input-bg rounded-lg border-2 border-transparent focus:outline-none focus:border-brand-primary">
+                             <div class="p-2 bg-green-100 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                            </div>
+                            <div class="ml-4 text-left">
+                                <p class="font-semibold text-gray-800">Recuperar por celular</p>
+                                <p class="text-sm text-brand-text-secondary">Enviaremos um código por SMS para redefinir sua senha.</p>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <button type="button" class="w-full bg-brand-primary text-white font-bold py-3 rounded-lg hover:bg-brand-primary-hover transition-colors">Continuar</button>
+            </section>
+            
+        </div>
+    </div>
+    
+    <script src="auth.js"></script>
+</body>
+</html>

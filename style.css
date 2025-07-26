@@ -1,0 +1,17 @@
+/* Import Google Fonts 'Inter' */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Apply base font to the entire application */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Ensure inputs don't have native borders that conflict with Tailwind's rings */
+input:focus {
+    outline: none;
+}
+
+/* Style for the active item in the bottom navigation bar */
+.nav-active, .nav-active svg {
+    color: #84cc16; /* Corresponds to brand-primary in Tailwind config */
+}
