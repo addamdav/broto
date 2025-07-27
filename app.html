@@ -42,12 +42,11 @@
     <!-- Container Principal do App -->
     <div id="app-main-view" class="w-full h-screen md:max-w-sm md:rounded-3xl md:shadow-lg md:overflow-hidden">
         <div class="h-full md:h-[85vh] md:min-h-[600px] md:max-h-[812px] flex flex-col">
-            <main class="flex-grow overflow-y-auto pt-6">
-        <div class="h-full md:h-[85vh] md:min-h-[600px] md:max-h-[812px] flex flex-col">
+            
+            <!-- Conteúdo principal que permite rolagem -->
             <main class="flex-grow overflow-y-auto pt-6">
                 <!-- Main Screen: Home -->
                 <section id="main-screen-home" class="main-screen px-6 pb-6">
-                    <!-- ... (código interno da home sem alterações) ... -->
                     <div class="flex justify-between items-center mb-6">
                         <h1 class="text-2xl font-bold text-gray-800">Início</h1>
                         <button><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg></button>
@@ -66,7 +65,6 @@
                     <div class="space-y-4">
                         <h2 class="text-xl font-bold text-gray-800">Para você</h2>
                         <div class="grid grid-cols-2 gap-2">
-                             <!-- ... (código dos cards de produto sem alterações) ... -->
                             <div class="product-card bg-white p-3 rounded-xl shadow-sm cursor-pointer" data-product-id="1" data-product-name="Alface Fresca" data-product-price="3.50" data-product-image="images/alface.jpg"><img src="images/alface.jpg" alt="Alface Fresca" class="rounded-lg mb-2 w-full h-24 object-cover"><h3 class="font-semibold text-gray-800">Alface Fresca</h3><p class="text-brand-text-secondary text-sm">R$ 3,50</p></div>
                             <div class="product-card bg-white p-3 rounded-xl shadow-sm cursor-pointer" data-product-id="2" data-product-name="Tomate Italiano" data-product-price="5.00" data-product-image="images/tomate.jpg"><img src="images/tomate.jpg" alt="Tomate Italiano" class="rounded-lg mb-2 w-full h-24 object-cover"><h3 class="font-semibold text-gray-800">Tomate Italiano</h3><p class="text-brand-text-secondary text-sm">R$ 5,00 / kg</p></div>
                             <div class="product-card bg-white p-3 rounded-xl shadow-sm cursor-pointer" data-product-id="3" data-product-name="Cenoura Orgânica" data-product-price="4.20" data-product-image="images/cenoura.jpg"><img src="images/cenoura.jpg" alt="Cenoura Orgânica" class="rounded-lg mb-2 w-full h-24 object-cover"><h3 class="font-semibold text-gray-800">Cenoura Orgânica</h3><p class="text-brand-text-secondary text-sm">R$ 4,20 / kg</p></div>
@@ -77,7 +75,6 @@
                     </div>
                 </section>
                 
-                <!-- ... (demais seções) ... -->
                 <section id="main-screen-product-details" class="main-screen hidden px-6 pb-6">
                     <button class="back-button mb-4 text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></button>
                     <div id="product-details-content"></div>
@@ -93,13 +90,22 @@
                     <button class="w-full mt-6 bg-brand-primary text-white font-bold py-3.5 rounded-lg hover:bg-brand-primary-hover transition-colors">Finalizar Pedido</button>
                 </section>
                 <section id="main-screen-orders" class="main-screen hidden px-6 pb-6 text-center"><h1 class="text-2xl font-bold text-gray-800 mt-10">Meus Pedidos</h1><p class="text-gray-500 mt-4">Nenhum pedido encontrado.</p></section>
-                <section id="main-screen-profile" class="main-screen hidden px-6 pb-6 text-center"><h1 class="text-2xl font-bold text-gray-800 mt-10">Meu Perfil</h1><p class="text-gray-500 mt-4">Configurações de perfil estarão aqui.</p></section>
+                <section id="main-screen-profile" class="main-screen hidden px-6 pb-6 flex flex-col text-center">
+                    <h1 class="text-2xl font-bold text-gray-800 mt-10">Meu Perfil</h1>
+                    <div class="mt-8 flex-grow">
+                        <!-- Outras opções de perfil podem ser adicionadas aqui -->
+                    </div>
+                    <div class="mt-auto">
+                        <button id="logout-btn" class="w-full max-w-xs mx-auto bg-red-500 text-white font-bold py-3 rounded-lg hover:bg-red-600 transition-colors">
+                            Sair (Logout)
+                        </button>
+                    </div>
+                </section>
             </main>
             
-            <!-- Bottom Navigation Bar -->
+            <!-- Barra de navegação inferior (sticky footer) -->
             <footer class="bg-white border-t border-gray-200 md:rounded-b-3xl">
                 <nav class="flex justify-around items-center h-20">
-                    <!-- ... (código dos botões de navegação sem alterações) ... -->
                     <button id="nav-home" class="nav-item flex flex-col items-center justify-center text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg><span class="text-xs font-medium mt-1">Início</span></button>
                     <button id="nav-cart" class="nav-item flex flex-col items-center justify-center text-gray-500 relative"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg><span class="text-xs font-medium mt-1">Carrinho</span><span id="cart-badge" class="absolute top-0 right-0 -mt-1 -mr-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span></button>
                     <button id="nav-orders" class="nav-item flex flex-col items-center justify-center text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg><span class="text-xs font-medium mt-1">Pedidos</span></button>

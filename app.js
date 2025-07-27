@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartTotalPriceEl = document.getElementById('cart-total-price')
     const cartBadge = document.getElementById('cart-badge')
     const checkoutBtn = document.getElementById('checkoutBtn')
+    const logoutBtn = document.getElementById('logout-btn')
 
     // --- Cart Logic ---
     const saveCart = () => localStorage.setItem('shoppingCart', JSON.stringify(cart))
@@ -61,13 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
         cartItemsContainer.innerHTML = '' // Clear current items
         
         if (cart.length === 0) {
-            cartEmptyState.classList.remove('hidden')
-            cartFooter.classList.add('hidden')
+            cartEmptyState.style.display = 'block'
+            cartFooter.style.display = 'none'
             return
         }
 
-        cartEmptyState.classList.add('hidden')
-        cartFooter.classList.remove('hidden')
+        cartEmptyState.style.display = 'none'
+        cartFooter.style.display = 'block'
 
         let totalPrice = 0
         cart.forEach(item => {
@@ -89,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         cartTotalPriceEl.textContent = formatCurrency(totalPrice)
         
-        // Add event listeners for remove buttons
         document.querySelectorAll('.remove-from-cart-btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 const productId = e.currentTarget.dataset.productId
@@ -123,7 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <button id="add-to-cart-btn" class="w-full bg-brand-primary text-white font-bold py-3.5 rounded-lg hover:bg-brand-primary-hover transition-colors">Adicionar ao Carrinho</button>
         `
 
-        // Add event listeners for the new elements
         const quantityEl = document.getElementById('product-quantity')
         document.getElementById('decrease-quantity').addEventListener('click', () => {
             if (quantity > 1) {
@@ -144,10 +143,23 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-    // --- Navigation ---
+    // --- Navigation & Event Listeners ---
     const showMainScreen = (screenId) => {
-        mainScreens.forEach(screen => screen.classList.add('hidden'))
-        document.getElementById(screenId)?.classList.remove('hidden')
+        mainScreens.forEach(screen => {
+            screen.classList.add('hidden')
+            screen.classList.remove('flex', 'block')
+        })
+
+        const activeScreen = document.getElementById(screenId)
+        if (activeScreen) {
+            activeScreen.classList.remove('hidden')
+            // Re-apply the correct display property based on the screen's needs
+            if (activeScreen.classList.contains('flex')) {
+                // Do nothing, flex is already part of the base class
+            } else {
+                activeScreen.classList.add('block')
+            }
+        }
     }
 
     const updateNav = (activeId) => {
@@ -157,37 +169,49 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
     
-    const setupNavEvents = () => {
+    const setupEventListeners = () => {
         document.getElementById('nav-home')?.addEventListener('click', () => { showMainScreen('main-screen-home'); updateNav('nav-home') })
         document.getElementById('nav-cart')?.addEventListener('click', () => { renderCart(); showMainScreen('main-screen-cart'); updateNav('nav-cart') })
         document.getElementById('nav-orders')?.addEventListener('click', () => { showMainScreen('main-screen-orders'); updateNav('nav-orders') })
         document.getElementById('nav-profile')?.addEventListener('click', () => { showMainScreen('main-screen-profile'); updateNav('nav-profile') })
-    }
 
-    productCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const productData = {
-                id: card.dataset.productId,
-                name: card.dataset.productName,
-                price: parseFloat(card.dataset.productPrice),
-                image: card.dataset.productImage,
-            }
-            renderProductDetails(productData)
-            showMainScreen('main-screen-product-details')
+        productCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const productData = {
+                    id: card.dataset.productId,
+                    name: card.dataset.productName,
+                    price: parseFloat(card.dataset.productPrice),
+                    image: card.dataset.productImage,
+                }
+                renderProductDetails(productData)
+                showMainScreen('main-screen-product-details')
+            })
         })
-    })
 
-    checkoutBtn?.addEventListener('click', () => showMainScreen('main-screen-delivery'))
-    
-    document.querySelectorAll('.back-button').forEach(button => {
-        button.addEventListener('click', () => showMainScreen('main-screen-home'))
-    })
+        checkoutBtn?.addEventListener('click', () => showMainScreen('main-screen-delivery'))
+        document.querySelectorAll('.back-button').forEach(button => {
+            button.addEventListener('click', () => showMainScreen('main-screen-home'))
+        })
+
+        logoutBtn?.addEventListener('click', () => {
+            localStorage.removeItem('shoppingCart')
+            localStorage.removeItem('userRole') 
+            window.location.href = 'index.html'
+        })
+
+        
+    }
     
     // --- Initialization ---
     const init = () => {
+        // Hide all screens except the default one on initial load
+        mainScreens.forEach(screen => {
+            if (screen.id !== 'main-screen-home') {
+                screen.classList.add('hidden')
+            }
+        })
         loadCart()
-        setupNavEvents()
-        showMainScreen('main-screen-home')
+        setupEventListeners()
         updateNav('nav-home')
     }
 

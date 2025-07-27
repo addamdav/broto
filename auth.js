@@ -4,119 +4,97 @@ document.addEventListener('DOMContentLoaded', () => {
     const screens = document.querySelectorAll('.screen')
     const loginForm = document.getElementById('login-form')
     const signupForm = document.getElementById('signup-form')
+    const themeButtons = document.querySelectorAll('.theme-button')
+    const themeTexts = document.querySelectorAll('.theme-text')
+    const producerSignupLink = document.getElementById('producer-signup-link')
 
     // --- Utility Functions ---
     const showScreen = (screenId) => {
-        screens.forEach(screen => {
-            screen.classList.add('hidden')
-            screen.classList.remove('flex')
-        })
+        screens.forEach(screen => screen.classList.add('hidden'))
         const activeScreen = document.getElementById(screenId)
-        if (activeScreen) {
-            activeScreen.classList.remove('hidden')
-            activeScreen.classList.add('flex')
+        if (activeScreen) activeScreen.classList.remove('hidden')
+    }
+
+    // --- Theme Logic ---
+    const applyTheme = (role) => {
+        const isProducer = role === 'producer'
+        
+        themeButtons.forEach(btn => {
+            btn.classList.toggle('bg-brand-primary', !isProducer)
+            btn.classList.toggle('hover:bg-brand-primary-hover', !isProducer)
+            btn.classList.toggle('bg-brand-producer-primary', isProducer)
+            btn.classList.toggle('hover:bg-brand-producer-primary-hover', isProducer)
+        })
+        themeTexts.forEach(text => {
+            text.classList.toggle('text-brand-primary', !isProducer)
+            text.classList.toggle('text-brand-producer-primary', isProducer)
+        })
+        
+        // Show specific link for producer signup
+        producerSignupLink.classList.toggle('hidden', !isProducer)
+        
+        // The secondary button on role choice screen needs special handling
+        const producerBtn = document.getElementById('select-producer-btn')
+        producerBtn.classList.toggle('bg-brand-dark', !isProducer)
+        producerBtn.classList.toggle('bg-brand-producer-primary', isProducer)
+    }
+
+    // --- Navigation & Flow Logic ---
+    const selectRoleAndProceed = (role) => {
+        localStorage.setItem('userRole', role)
+        applyTheme(role)
+        showScreen('screen-signup')
+    }
+
+    document.getElementById('goToRoleChoice')?.addEventListener('click', () => showScreen('screen-role-choice'))
+    document.getElementById('goToLoginFromOnboarding')?.addEventListener('click', () => showScreen('screen-role-choice'))
+    document.getElementById('select-consumer-btn')?.addEventListener('click', () => selectRoleAndProceed('consumer'))
+    document.getElementById('select-producer-btn')?.addEventListener('click', () => selectRoleAndProceed('producer'))
+    document.querySelectorAll('.back-to-role-choice').forEach(btn => btn.addEventListener('click', () => showScreen('screen-role-choice')))
+    document.getElementById('goToLogin')?.addEventListener('click', (e) => { e.preventDefault(); showScreen('screen-login') })
+    document.getElementById('goToSignUp')?.addEventListener('click', (e) => { e.preventDefault(); showScreen('screen-signup') })
+
+    // --- Form Submission Logic ---
+    loginForm?.addEventListener('submit', (e) => {
+        e.preventDefault()
+        if (!validateAndGetFields(loginForm, ['login-email', 'login-password'])) return
+        
+        const role = localStorage.getItem('userRole') || 'consumer' // Default to consumer
+        window.location.href = role === 'producer' ? 'producer.html' : 'app.html'
+    })
+
+    signupForm?.addEventListener('submit', (e) => {
+        e.preventDefault()
+        if (validateAndGetFields(signupForm, ['signup-name', 'signup-email', 'signup-password'])) {
+            showScreen('screen-verify')
         }
-    }
+    })
 
-    const redirectToApp = () => {
-        window.location.href = 'app.html'
-    }
+    document.getElementById('submitVerify')?.addEventListener('click', (e) => {
+        e.preventDefault()
+        const role = localStorage.getItem('userRole') || 'consumer'
+        window.location.href = role === 'producer' ? 'producer.html' : 'app.html'
+    })
 
-    // --- Validation Logic ---
+    // --- Validation Logic (simplified) ---
     const validateAndGetFields = (form, fieldIds) => {
         let isValid = true
-        const fields = {}
-
-        // First, clear all previous errors in the form
         form.querySelectorAll('input').forEach(input => {
-            input.classList.remove('input-error')
-            const errorMessage = input.nextElementSibling
-            if (errorMessage && errorMessage.classList.contains('error-message')) {
-                errorMessage.classList.add('hidden')
-            }
+            input.classList.remove('input-error');
+            (input.nextElementSibling)?.classList.add('hidden')
         })
-
-        // Then, validate each required field
         fieldIds.forEach(id => {
             const input = form.querySelector(`#${id}`)
             if (!input.value.trim()) {
                 isValid = false
-                input.classList.add('input-error')
-                const errorMessage = input.nextElementSibling
-                if (errorMessage && errorMessage.classList.contains('error-message')) {
-                    errorMessage.classList.remove('hidden')
-                }
-            }
-            fields[id] = input
-        })
-
-        return isValid ? fields : null
-    }
-
-    // Remove error highlight on input
-    document.querySelectorAll('#login-form input, #signup-form input').forEach(input => {
-        input.addEventListener('input', () => {
-            if (input.value.trim()) {
-                input.classList.remove('input-error')
-                const errorMessage = input.nextElementSibling
-                if (errorMessage && errorMessage.classList.contains('error-message')) {
-                    errorMessage.classList.add('hidden')
-                }
+                input.classList.add('input-error');
+                (input.nextElementSibling)?.classList.remove('hidden')
             }
         })
-    })
-
-    // --- Form Submission Logic ---
-    if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault()
-            const fields = validateAndGetFields(loginForm, ['login-email', 'login-password'])
-            if (fields) {
-                console.log('Login form is valid. Logging in...')
-                redirectToApp()
-            }
-        })
+        return isValid
     }
 
-    if (signupForm) {
-        signupForm.addEventListener('submit', (e) => {
-            e.preventDefault()
-            const fields = validateAndGetFields(signupForm, ['signup-name', 'signup-email', 'signup-password'])
-            if (fields) {
-                console.log('Signup form is valid. Proceeding to verification...')
-                showScreen('screen-verify')
-            }
-        })
-    }
-    
-    // --- Navigation Event Listeners ---
-    document.getElementById('goToSignUp')?.addEventListener('click', (e) => { e.preventDefault(); showScreen('screen-signup') })
-    document.getElementById('goToLogin')?.addEventListener('click', (e) => { e.preventDefault(); showScreen('screen-login') })
-    document.getElementById('goToForgotPassword')?.addEventListener('click', (e) => { e.preventDefault(); showScreen('screen-forgot-password') })
-    document.getElementById('backToLoginFromForgot')?.addEventListener('click', (e) => { e.preventDefault(); showScreen('screen-login') })
-    
-    // This button does not require validation, it just transitions
-    document.getElementById('submitVerify')?.addEventListener('click', (e) => {
-        e.preventDefault()
-        redirectToApp()
-    })
-
-    // --- OTP Input Logic (no changes) ---
-    const otpContainer = document.getElementById('otp-container')
-    if (otpContainer) {
-        const inputs = otpContainer.querySelectorAll('input')
-        inputs.forEach((input, index) => {
-            input.addEventListener('keyup', (e) => {
-                if (e.target.value.length === e.target.maxLength && index < inputs.length - 1) {
-                    inputs[index + 1].focus()
-                }
-                if (e.key === 'Backspace' && e.target.value.length === 0 && index > 0) {
-                    inputs[index - 1].focus()
-                }
-            })
-        })
-    }
-
-    // By default, show the login screen
-    showScreen('screen-login')
+    // --- Initialization ---
+    showScreen('screen-onboarding')
+    applyTheme(localStorage.getItem('userRole') || 'consumer') // Apply theme on load
 })
